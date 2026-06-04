@@ -357,7 +357,7 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form action="mailto:johannito23@email.com">
+                    <form onsubmit="sendForm(event)" autocomplete="on" method="POST">
                         <div class="form-content">
                             <label for="nom">Name <br>
                                 <input type="text" id="nom" class="nom" name="nom" placeholder="Votre Nom" required>
