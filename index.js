@@ -261,3 +261,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 })();
+
+
+/* ---------- FORMULAIRE CONTACT  mailto ---------- */
+function sendForm(e){
+    e.preventDefault();
+    const f=e.target;
+    const nom=f.nom.value.trim(),email=f.email.value.trim(),message=f.message.value.trim();
+    const subject='[EJE] '+nom+' contacted you';
+    const body=`Nom : ${nom}\nEmail : ${email}\nMessage : ${message}\n\n You can contact me by clicking on the whatsapp icon in the contact section. `;
+    window.location.href='mailto:info@lgticm.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+}
