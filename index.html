@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="ELLA JOHANN EMMANUEL">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./images/icon/ChatGPT Image 28 août 2025, 01_47_53.png">
     <title>ELLA JOHANN EMMANUEL</title>
@@ -11,8 +10,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
+    <!-------------------------------------------------------- LOADER------------------- -->
+    <div id="loader">
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+    
+
+    <!-- phase1 intializing portfolio -->
+        <div id="phase-init">
+            <div class="init-prompt">&gt; BOOT SEQUENCE STARTED</div>
+            <div class="init-title">
+                Initializing Portfolio<span class="cursor">_</span>
+            </div>
+            <div class="init-line" id="initLine"></div>
+        </div>
+
+        <!-- phase2 terminal log -->
+        <div id="phase-terminal">
+            <div class="term-bar">
+                <div class="tdot r"></div>
+                <div class="tdot y"></div>
+                <div class="tdot g"></div>
+                <span class="term-filename">portfolioEJE-boot.sh — bash</span>
+            </div>
+            <div class="term-body" id="termBody"></div>
+            <div class="prog-wrap">
+                <div class="prog-header">
+                    <span id="progLabel">LOADING MODULES</span>
+                    <span id="progPct">0%</span>
+                </div>
+                <div class="prog-track">
+                    <div class="prog-fill" id="progFill"></div>
+                </div>
+            </div>
+        </div>
+
+    <!-- phase3 success -->
+        <div id="phase-success">
+            <div class="success-badge">
+                <div class="success-dot"></div>
+                INITIALISATION PORTFOLIO COMPLÈTE
+            </div>
+            <div class="enter-hint">LAUNCHING INTERFACE_</div>
+        </div>
+    </div>
     <!-- ------------------------------------------------------navbar --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <nav class="navbar">
+    <nav class="navbar reveal-section" id="navbar">
         <p class="logo">&lt;DEV JOHANNITO /&gt;</p>
         <ul>
             <li><a href="#home">Home</a></li>
@@ -26,8 +71,8 @@
     </nav>
 
     <!---------------------------------------------------------- home------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-    <section id="home" class="home">
-        <div class="content">
+    <section id="home" class="home reveal-section">
+        <div class="content reveal-section" id="homeContent">
             <div class="text">
                 <div class="intializing-portfolio">
                     <span class="first">
@@ -49,7 +94,7 @@
         </div>
     </section>
     <!-- -------------------------------------------------------------section about------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <section id="about" class="about">
+    <section id="about" class="about reveal-section">
         <div class="content">
             <div class="apropos">
                 <span class="aboutme">ABOUT ME</span>
@@ -110,7 +155,7 @@
         </div>
     </section>
     <!-- -------------------------------------------------------------section formation------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <section id="formation" class="formation">
+    <section id="formation" class="formation reveal-section">
         <div class="window-formation">
             <div class="title-formation">
                 <span class="course">COURSE</span>
@@ -177,7 +222,7 @@
         </div>
     </section>
     <!---------------------------------------------------------------------- section skills --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <section id="skills" class="skills">
+    <section id="skills" class="skills reveal-section">
         <div class="content">
             <div class="content">
             <div class="skills-title">
@@ -260,7 +305,7 @@
         </div>
     </section>
     <!----------------------------------------------------------------------- section project --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <section id="projects" class="projects">
+    <section id="projects" class="projects reveal-section">
         <div class="content">
             <div class="project-title">
                 <span class="PROJECTS">PROJECTS</span>
@@ -339,14 +384,14 @@
                         </div>
                     </div>
                     <div class="project-1-text">
-                        MOM-LIST is a simple list application that allows my mother to manage her daily tasks, we can download and use it offline.
+                        MOM-LIST is a simple list application that allows my mother to manage her daily tasks.
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!------------------------------------------------------------------------ section contact --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact reveal-section">
         <div class="content">
             <div class="contact-title">
                 <span class="contacts">CONTACT</span>
@@ -403,7 +448,7 @@
             </div>
         </div>
     </section>
-    <footer class="footer">
+    <footer class="footer reveal-section" id="footer">
         <div class="bloc1">
             <p class="copy">&copy; 2026 Fullstack Developer Portfolio. All rights reserved.</p> 
         </div>
