@@ -13,9 +13,258 @@ html{
         background-color: rgba(0, 255, 255, 0.5);
     }
 
+/* apparition */
+.reveal-section{
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ------------------------------------------------LOADING------------------------------------------------------------------------------------------------ */
+#loader {
+    position: fixed; inset: 0; z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background: #0a0a0f;
+    transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.9s;
+}
+
+#loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ── Décors angulaires ── */
+.corner {
+    position: absolute;
+    width: 20px; height: 20px;
+    border-color: rgba(0, 255, 255, 0.5);
+    border-style: solid;
+    opacity: 0.5;
+}
+
+.corner.tl { top: 20px; left: 20px; border-width: 1px 0 0 1px; }
+.corner.tr { top: 20px; right: 20px; border-width: 1px 1px 0 0; }
+.corner.bl { bottom: 20px; left: 20px; border-width: 0 0 1px 1px; }
+.corner.br { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
+
+/* phase1 */
+#phase-init {
+    text-align: center;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+#phase-init.shrink {
+/* Monte et réduit pour laisser place au terminal en dessous */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.init-prompt {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: #4a4a6a;
+    margin-bottom: 14px;
+}
+
+.init-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(1.6rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #85adad;
+    line-height: 1.1;
+}
+/* Le "_" clignotant */
+.init-title .cursor {
+    display: inline-block;
+    color: #85adad;
+    animation: blink 0.9s step-end infinite;
+    margin-left: 2px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* Trait décoratif sous le titre */
+.init-line {
+    width: 0%;
+    height: 1px;
+    background: linear-gradient(135deg, rgb(0, 255, 255) 0%, rgb(255, 0, 255) 100%);
+    margin: 18px auto 0;
+    transition: width 1s ease;
+}
+
+.init-line.expand { width: 80%; }
+
+/* phase2 */
+#phase-terminal {
+    width: min(640px, 92vw);
+    margin-top: 28px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+}
+
+#phase-terminal.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* ── Barre titre du terminal ── */
+.term-bar {
+    background: #0f0f1a;
+    border: 1px solid #1e1e35;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    padding: 7px 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.tdot { width: 9px; height: 9px; border-radius: 50%; }
+.tdot.r { background: #ff5f57; }
+.tdot.y { background: #febc2e; }
+.tdot.g { background: #28c840; }
+
+.term-filename {
+    margin-left: auto;
+    font-size: 0.62rem;
+    color: #4a4a6a;
+    letter-spacing: 0.15em;
+}
+
+/* ── Corps du terminal ── */
+.term-body {
+    background: #0f0f1a;
+    border: 1px solid #1e1e35;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 14px 16px;
+    min-height: 160px;
+    max-height: 220px;
+    overflow-y: auto;
+    font-size: clamp(0.64rem, 1.7vw, 0.76rem);
+    line-height: 1.8;
+    scrollbar-width: none;
+}
+
+.term-body::-webkit-scrollbar { display: none; }
+
+/* ── Lignes de log ── */
+.log {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    opacity: 0;
+    animation: logIn 0.12s ease forwards;
+}
+@keyframes logIn {
+    from { opacity:0; transform: translateX(-4px); }
+    to   { opacity:1; transform: translateX(0); }
+}
+
+.log-ts   { color:  #4a4a6a; flex-shrink:0; font-size:0.65em; }
+.log-ok   { color: #4ade80;  flex-shrink:0; }
+.log-warn { color: #fbbf24;  flex-shrink:0; }
+.log-err  { color: #f87171;    flex-shrink:0; }
+.log-inf  { color: #0ea5e9;   flex-shrink:0; }
+.log-acc  { color: #8b5cf6;flex-shrink:0; }
+.log-msg  { color: #d1d5db; }
+.log-val  { color: #f3f4f6; }
+
+/* ── Barre de progression ── */
+.prog-wrap {
+    margin-top: 10px;
+}
+
+.prog-header {
+    display: flex; justify-content: space-between;
+    font-size: 0.62rem; color: #4a4a6a;
+    margin-bottom: 5px;
+}
+
+.prog-track {
+    height: 3px;
+    background: #1e1e35;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.prog-fill {
+    height: 100%; width: 0%;
+    border-radius: 99px;
+    background: linear-gradient(135deg, rgb(0, 255, 255) 0%, rgb(255, 0, 255) 100%);
+    box-shadow: 0 0 8px rgba(108, 99, 255, 0.25);
+    transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* phase3 */
+#phase-success {
+    margin-top: 18px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#phase-success.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.success-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 18px;
+    border: 1px solid rgba(74,222,128,0.3);
+    border-radius: 2px;
+    background: rgba(74,222,128,0.05);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: #4ade80;
+}
+
+.success-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.2);
+    animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.enter-hint {
+    margin-top: 8px;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.25em;
+    animation: blink 1.1s step-end infinite;
+}
+
 /* --------------------------------------------------------------------------------------------------------body-------------------------------------------------------------------- */
 body{
     background-color: hsl(220, 20%, 4%);
+}
+
+body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-size: 256px;
 }
 
 /* --------------------------------------------------------------------------------------------------------navbar-------------------------------------------------------------------- */
@@ -123,6 +372,7 @@ nav ul li:hover{
 
 .home .intializing-portfolio{
     text-align: center;
+    margin-top: 100px;
 }
 
 .home .trait{
